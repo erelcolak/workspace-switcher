@@ -1,0 +1,131 @@
+{
+  "name": "workspace-switcher",
+  "displayName": "Workspace Switcher",
+  "description": "Easily switch between your workspaces from the Activity Bar and the Status Bar.",
+  "version": "0.1.0",
+  "publisher": "erelcolak",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "workspaceSwitcher",
+          "title": "Workspace Switcher",
+          "icon": "media/workspaces.svg"
+        }
+      ]
+    },
+    "views": {
+      "workspaceSwitcher": [
+        {
+          "id": "workspaceSwitcherView",
+          "name": "Workspaces",
+          "icon": "media/workspaces.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "workspaceSwitcherView",
+        "contents": "No workspaces found yet.\n[Refresh](command:workspaceSwitcher.refresh)\nYou can change the root folders in settings: `workspaceSwitcher.rootFolders`."
+      }
+    ],
+    "commands": [
+      {
+        "command": "workspaceSwitcher.refresh",
+        "title": "Workspaces: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "workspaceSwitcher.openInNewWindow",
+        "title": "Open in New Window",
+        "icon": "$(empty-window)"
+      },
+      {
+        "command": "workspaceSwitcher.openInCurrentWindow",
+        "title": "Open in Current Window"
+      },
+      {
+        "command": "workspaceSwitcher.quickPick",
+        "title": "Workspaces: Quick Switch"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "workspaceSwitcher.refresh",
+          "when": "view == workspaceSwitcherView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "workspaceSwitcher.openInCurrentWindow",
+          "when": "view == workspaceSwitcherView && viewItem == workspaceItem",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Workspace Switcher",
+      "properties": {
+        "workspaceSwitcher.rootFolders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "~/Developer"
+          ],
+          "description": "Root folders to scan. ~ expands to the home directory."
+        },
+        "workspaceSwitcher.maxDepth": {
+          "type": "number",
+          "default": 4,
+          "description": "Maximum scan depth from each root folder."
+        },
+        "workspaceSwitcher.ignoreFolders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional folder names to skip during scanning. node_modules, dist, .next, etc. are already skipped automatically."
+        },
+        "workspaceSwitcher.iconColor": {
+          "type": "string",
+          "default": "",
+          "scope": "resource",
+          "description": "Icon color (hex, e.g. #d173f1) for this workspace in the list. Usually set per-workspace in the settings block of its own .code-workspace file. When left empty, the default layers icon is used."
+        },
+        "workspaceSwitcher.lastUsedWorkspaceCount": {
+          "type": "number",
+          "default": 3,
+          "minimum": 0,
+          "description": "Number of recently opened workspaces shown in the \"Recently Used\" section. When the total number of workspaces exceeds this value, the list splits into \"Recently Used\" and \"All\" sections; otherwise a single flat list is shown. Set to 0 to disable sectioning entirely."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.4.0"
+  }
+}
