@@ -4,7 +4,7 @@
 
 Scan your `.code-workspace` files and open them in one click from the **Activity Bar** and the **Status Bar**. Clicking an entry opens that workspace in a **new VSCode window** by default.
 
-<img width="1280" height="720" alt="workspace-switcher" src="https://github.com/user-attachments/assets/0ff8f699-7ed8-4b5b-b148-c5c4198d34c9" />
+<img max-width="1280" max-height="720" alt="workspace-switcher" src="https://github.com/user-attachments/assets/0ff8f699-7ed8-4b5b-b148-c5c4198d34c9" />
 
 ## Features
 
