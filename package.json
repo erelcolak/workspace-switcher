@@ -1,11 +1,15 @@
 {
-  "name": "workspace-switcher",
+  "name": "erelcolak-workspace-switcher",
   "displayName": "Workspace Switcher",
   "description": "Easily switch between your workspaces from the Activity Bar and the Status Bar.",
   "version": "0.1.0",
   "publisher": "erelcolak",
   "license": "MIT",
   "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erelcolak/workspace-switcher.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
