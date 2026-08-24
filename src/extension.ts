@@ -6,6 +6,7 @@ import {
   workspaceIconPath,
 } from "./treeProvider";
 import { createStatusBar } from "./statusBar";
+import { addRootFolders, manageRootFolders } from "./rootFolders";
 
 interface ScanConfig {
   rootFolders: string[];
@@ -115,6 +116,14 @@ export function activate(context: vscode.ExtensionContext): void {
       treeProvider.refresh()
     ),
 
+    vscode.commands.registerCommand("workspaceSwitcher.manageRootFolders", () =>
+      manageRootFolders()
+    ),
+
+    vscode.commands.registerCommand("workspaceSwitcher.addRootFolder", () =>
+      addRootFolders()
+    ),
+
     vscode.commands.registerCommand(
       "workspaceSwitcher.openInNewWindow",
       async (item?: WorkspaceItem) => {
@@ -137,9 +146,13 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("workspaceSwitcher.quickPick", async () => {
       const entries = await loadEntries();
       if (entries.length === 0) {
-        vscode.window.showInformationMessage(
-          "No workspaces found. Check the root folders in settings (workspaceSwitcher.rootFolders)."
+        const action = await vscode.window.showInformationMessage(
+          "No workspaces found under the configured root folders.",
+          "Add Root Folder\u2026"
         );
+        if (action) {
+          await manageRootFolders();
+        }
         return;
       }
 

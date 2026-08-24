@@ -42,7 +42,7 @@
     "viewsWelcome": [
       {
         "view": "workspaceSwitcherView",
-        "contents": "No workspaces found yet.\n[Refresh](command:workspaceSwitcher.refresh)\nYou can change the root folders in settings: `workspaceSwitcher.rootFolders`."
+        "contents": "No workspaces found yet.\n[Add Root Folder](command:workspaceSwitcher.addRootFolder)\n[Refresh](command:workspaceSwitcher.refresh)\nWorkspace Switcher scans the folders listed in `workspaceSwitcher.rootFolders` for .code-workspace files."
       }
     ],
     "commands": [
@@ -63,6 +63,15 @@
       {
         "command": "workspaceSwitcher.quickPick",
         "title": "Workspaces: Quick Switch"
+      },
+      {
+        "command": "workspaceSwitcher.manageRootFolders",
+        "title": "Workspaces: Manage Root Folders...",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "workspaceSwitcher.addRootFolder",
+        "title": "Workspaces: Add Root Folder..."
       }
     ],
     "menus": {
@@ -70,7 +79,12 @@
         {
           "command": "workspaceSwitcher.refresh",
           "when": "view == workspaceSwitcherView",
-          "group": "navigation"
+          "group": "navigation@1"
+        },
+        {
+          "command": "workspaceSwitcher.manageRootFolders",
+          "when": "view == workspaceSwitcherView",
+          "group": "navigation@2"
         }
       ],
       "view/item/context": [
@@ -92,7 +106,7 @@
           "default": [
             "~/Developer"
           ],
-          "description": "Root folders to scan. ~ expands to the home directory."
+          "description": "Root folders to scan. ~ expands to the home directory. Tip: use the gear icon in the Workspaces view to add or remove folders with a picker."
         },
         "workspaceSwitcher.maxDepth": {
           "type": "number",
