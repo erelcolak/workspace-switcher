@@ -2,7 +2,7 @@
   "name": "erelcolak-workspace-switcher",
   "displayName": "Workspace Switcher For VS Code",
   "description": "Easily switch between your workspaces from the Activity Bar and the Status Bar.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "erelcolak",
   "license": "MIT",
   "icon": "media/icon.png",
