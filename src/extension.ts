@@ -7,6 +7,7 @@ import {
 } from "./treeProvider";
 import { createStatusBar } from "./statusBar";
 import { addRootFolders, manageRootFolders } from "./rootFolders";
+import { showColorPicker } from "./colorPicker";
 
 interface ScanConfig {
   rootFolders: string[];
@@ -139,6 +140,15 @@ export function activate(context: vscode.ExtensionContext): void {
       async (item?: WorkspaceItem) => {
         if (item) {
           await openEntry(context, item.entry, false);
+        }
+      }
+    ),
+
+    vscode.commands.registerCommand(
+      "workspaceSwitcher.changeIconColor",
+      async (item?: WorkspaceItem) => {
+        if (item) {
+          await showColorPicker(item.entry, storageDir, () => treeProvider.refresh());
         }
       }
     ),

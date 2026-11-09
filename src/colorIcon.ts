@@ -7,8 +7,9 @@ const HEX_COLOR = /^#([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
 /**
  * Layers (stacked sheets) path — kept in sync with media/workspaces.svg so the
  * list icon matches the Activity Bar icon. If the logo changes, update both.
+ * Also used by the color picker's live preview.
  */
-const LAYERS_PATH =
+export const LAYERS_PATH =
   "M12 2.5 2.5 7 12 11.5 21.5 7 12 2.5Zm0 1.66L18.6 7 12 9.84 5.4 7 12 4.16Z" +
   "M3.06 11.2 12 15.39l8.94-4.19 1.56.73-10.5 4.92-10.5-4.92 1.56-.73Z" +
   "m0 4.2L12 19.59l8.94-4.19 1.56.73L12 21.05 1.5 16.13l1.56-.73Z";

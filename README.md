@@ -24,11 +24,11 @@ The folder is saved to `workspaceSwitcher.rootFolders` and the list re-scans rig
 
 ## Features
 
-- **Activity Bar panel** — A "Workspaces" view in the side bar lists every workspace found under your root folders. Click a row to open it in a new window; use the inline action to open it in the current window.
+- **Activity Bar panel** — A "Workspaces" view in the side bar lists every workspace found under your root folders. Click a row to open it in a new window; the `…` menu on the right of each row opens it in the current window or changes its colors.
 - **Folder picker for root folders** — Click the gear icon in the _Workspaces_ view title to add a root folder through the native folder dialog, remove one with its trash button, or reveal it in the file manager. No hand-editing of `settings.json` required.
 - **Status Bar button** — A `Workspaces` button in the Status Bar opens a Quick Pick to search and jump to any workspace.
 - **Recently Used section** — When you have more workspaces than `lastUsedWorkspaceCount`, the list splits into **Recently Used** and **All**, so the workspaces you switch to most are always at the top.
-- **Per-workspace colored icons** — Tint a workspace's icon with any hex color via a single setting in its `.code-workspace` file.
+- **Per-workspace colors** — Pick a background and foreground color via **Change Color of Workspace...** to tint the workspace's list icon, status bar and activity bar border; the colors are saved in its `.code-workspace` file.
 - **Focused scanning** — Only `.code-workspace` files are listed (including those inside git repositories). Folders like `node_modules`, `dist`, `out`, `.next`, `target`, and `.git` are skipped automatically, and symlinked directories are not followed.
 
 ## Configuration
@@ -47,9 +47,15 @@ The gear icon in the _Workspaces_ view (see [Getting started](#getting-started))
 
 Paths inside your home directory are stored as `~/...` so the setting stays portable. Root folders are saved to your **User** settings, unless `workspaceSwitcher.rootFolders` is already defined in the current workspace — in that case the workspace value is updated instead.
 
-### Per-workspace icon color
+### Colorize Workspaces
 
-To give a workspace a colored icon in the list, add a hex color to the `settings` block of its `.code-workspace` file:
+Hover a workspace in the list, open the `…` menu on the right (or right-click the row) and choose **Change Color of Workspace...**:
+
+- **Background color** — pick a preset (the 900 shades of Vercel's Geist palette), use the color picker, or type a hex value.
+- **Foreground color** — the status bar text color. **Auto** is on by default and picks white or dark text, whichever contrasts more with the background; turn it off to pick white or dark yourself, use the color picker, or type a hex value (the color already stored in the file is restored).
+- **Apply to** — the background always tints the workspace's icon in the list. **Status bar** and **Activity bar active item border** are on by default; unchecked items are left unchanged in the file.
+
+A live preview shows the result. **Apply** writes the colors to the `settings` block of that workspace's `.code-workspace` file; **Reset to Default** removes all of them. You can also set them by hand:
 
 ```jsonc
 {
@@ -57,16 +63,23 @@ To give a workspace a colored icon in the list, add a hex color to the `settings
     /* ... */
   ],
   "settings": {
-    "workspaceSwitcher.iconColor": "#d173f1",
+    "workspaceSwitcher.iconColor": "#148d3e",
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#148d3e",
+      "statusBar.foreground": "#ffffff",
+      "activityBar.activeBorder": "#148d3e",
+    },
   },
 }
 ```
 
-Only the **icon** is tinted — the name never changes. When no color is set, a theme-aware default layers icon is used.
+Only the **icon** is tinted in the list — the name never changes. When no color is set, a theme-aware default layers icon is used. The picker only touches these settings; comments and formatting elsewhere in the file are preserved.
+
+> **Themes:** workspace color customizations take precedence over your color theme. A theme-specific block such as `"[Theme Name]": { "statusBar.background": "…" }` inside `workbench.colorCustomizations` — in your User settings or in the workspace file — still overrides them while that theme is active. The picker shows a short warning only when such a block applies to the theme the workspace uses.
 
 ## Usage
 
-- **Activity Bar:** Open the _Workspaces_ view from the side bar. Click a row to open it in a new window; use the inline action to open it in the current window.
+- **Activity Bar:** Open the _Workspaces_ view from the side bar. Click a row to open it in a new window. The `…` menu on the right of a row offers **Open in Current Window** and **Change Color of Workspace...** (also available on right-click).
 - **Status Bar:** Click the _Workspaces_ button to open a Quick Pick, then type to filter and press Enter to open.
 - **Root folders:** Use the gear icon in the view title to add or remove the folders that are scanned.
 - **Refresh:** Use the refresh icon in the view title to re-scan. The list also refreshes automatically when relevant settings change.

@@ -61,6 +61,11 @@
         "title": "Open in Current Window"
       },
       {
+        "command": "workspaceSwitcher.changeIconColor",
+        "title": "Change Color of Workspace...",
+        "icon": "$(symbol-color)"
+      },
+      {
         "command": "workspaceSwitcher.quickPick",
         "title": "Workspaces: Quick Switch"
       },
@@ -72,6 +77,13 @@
       {
         "command": "workspaceSwitcher.addRootFolder",
         "title": "Workspaces: Add Root Folder..."
+      }
+    ],
+    "submenus": [
+      {
+        "id": "workspaceSwitcher.itemActions",
+        "label": "Workspace Actions",
+        "icon": "$(ellipsis)"
       }
     ],
     "menus": {
@@ -89,9 +101,35 @@
       ],
       "view/item/context": [
         {
-          "command": "workspaceSwitcher.openInCurrentWindow",
+          "submenu": "workspaceSwitcher.itemActions",
           "when": "view == workspaceSwitcherView && viewItem == workspaceItem",
           "group": "inline"
+        },
+        {
+          "command": "workspaceSwitcher.openInCurrentWindow",
+          "when": "view == workspaceSwitcherView && viewItem == workspaceItem",
+          "group": "1_open@1"
+        },
+        {
+          "command": "workspaceSwitcher.changeIconColor",
+          "when": "view == workspaceSwitcherView && viewItem == workspaceItem",
+          "group": "2_color@1"
+        }
+      ],
+      "workspaceSwitcher.itemActions": [
+        {
+          "command": "workspaceSwitcher.openInCurrentWindow",
+          "group": "1_open@1"
+        },
+        {
+          "command": "workspaceSwitcher.changeIconColor",
+          "group": "2_color@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "workspaceSwitcher.changeIconColor",
+          "when": "false"
         }
       ]
     },
@@ -145,5 +183,8 @@
     "@types/node": "^18.19.0",
     "@types/vscode": "^1.75.0",
     "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
   }
 }
