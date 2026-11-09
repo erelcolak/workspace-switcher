@@ -6,7 +6,8 @@ Scan your `.code-workspace` files and open them in one click from the **Activity
 
 ## Step 1: Pick Your Work/Root Folder
 
-<img max-width="1280" max-height="720" alt="workspace-switcher-root" src="https://github.com/user-attachments/assets/094ce4af-26d3-4f57-ac9c-64440db5f710" />
+<img max-width="1280" max-height="720" alt="workspace-switcher" src="https://github.com/user-attachments/assets/f230c419-e253-4763-adb6-ad1152d394ed" />
+
 
 ## Step 2: Easily Switch Your Workspaces
 
@@ -14,7 +15,8 @@ Scan your `.code-workspace` files and open them in one click from the **Activity
 
 ## Step 3: Colorize Your Workspaces
 
-<img max-width="1280" max-height="720" alt="workspace-switcher-colorize" src="https://github.com/user-attachments/assets/0ff8f699-7ed8-4b5b-b148-c5c4198d34c9" />
+<img max-width="1280" max-height="720" alt="workspace-switcher-colorize" src="https://github.com/user-attachments/assets/b8c2317f-7a39-4fff-8b48-e28b8c2f8feb" />
+
 
 ## Getting started
 
