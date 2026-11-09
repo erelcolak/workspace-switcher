@@ -4,6 +4,23 @@ All notable changes to the **Workspace Switcher** extension are documented in th
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-11-10
+
+### Added
+
+- **Workspace colors** — New command **Change Color of Workspace...** (`workspaceSwitcher.changeIconColor`) opens a color panel for a workspace, with a live preview of its list icon, status bar and activity bar.
+  - **Background color** — pick one of the Vercel Geist 900 presets, use the color picker, or type a hex value.
+  - **Foreground color** — status bar text color. **Auto** (on by default) picks white or dark text, whichever contrasts more with the background; white and dark presets, the color picker and a hex field are also available.
+  - **Apply to** — the background always tints the list icon (`workspaceSwitcher.iconColor`). **Status bar** (`statusBar.background`, `statusBar.foreground`) and **Activity bar active item border** (`activityBar.activeBorder`) are written to `workbench.colorCustomizations` and are on by default; unchecked targets are left unchanged.
+  - **Reset to Default** removes these colors from the workspace file.
+  - A short warning appears when a theme-specific block (`"[Theme Name]": { … }`) for the workspace's theme overrides these colors.
+- **`…` menu on each workspace row** — offers **Open in Current Window** and **Change Color of Workspace...**; both are also available on right-click.
+
+### Changed
+
+- **Open in Current Window** moved from the row's inline button into the `…` menu.
+- Colors are written straight into the `.code-workspace` file without disturbing comments, trailing commas, indentation or line endings. A file with unsaved changes in an editor is never overwritten.
+
 ## [0.2.0] - 2026-08-24
 
 ### Added
@@ -36,5 +53,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - **Per-workspace colored icons** — Tint a workspace's icon with any hex color via `workspaceSwitcher.iconColor` in its `.code-workspace` file.
 - **Focused scanning** — `node_modules`, `dist`, `out`, `.next`, `target`, and `.git` are skipped automatically, symlinked directories are not followed, and `workspaceSwitcher.maxDepth` / `workspaceSwitcher.ignoreFolders` let you narrow the scan further.
 
+[0.3.0]: https://github.com/erelcolak/workspace-switcher/releases/tag/v0.3.0
 [0.2.0]: https://github.com/erelcolak/workspace-switcher/releases/tag/v0.2.0
 [0.1.0]: https://github.com/erelcolak/workspace-switcher/releases/tag/v0.1.0
